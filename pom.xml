@@ -3,7 +3,7 @@
 
   <groupId>io.magentys</groupId>
   <artifactId>cherry-junit</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>cherry-junit</name>
@@ -30,7 +30,7 @@
   <scm>
     <developerConnection>scm:git:https://github.com/MagenTys/cherry-junit</developerConnection>
     <url>https://github.com/MagenTys/cherry-junit</url>
-    <tag>cherry-junit-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
