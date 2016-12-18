@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.magentys</groupId>
@@ -46,17 +47,24 @@
     </repository>
   </distributionManagement>
 
+  <!--
+  [INFO]   ${nexus-staging-maven-plugin.version} ................ 1.6.3 -> 1.6.7
+[INFO]   ${maven-javadoc-plugin.version} ..................... 2.9.1 -> 2.10.4
+[INFO]   ${maven-source-plugin.version} ....................... 2.2.1 -> 3.0.1
+[INFO]   ${maven-compiler-plugin.version} ....................... 3.1 -> 3.6.0
+  -->
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.level>6</java.level>
 
     <!-- plugins -->
-    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-    <nexus-staging-maven-plugin.version>1.6.3</nexus-staging-maven-plugin.version>
-    <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-    <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+    <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
 
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
@@ -116,28 +124,37 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>${maven-gpg-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-            <configuration>
-              <keyname>BCF7D3CB</keyname>
-              <passphrase>mat2414</passphrase>
-              <!--<<homedir>/Users/kostasmamalis/.gnung</homedir>-->
-
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>gpg</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <keyname>BCF7D3CB</keyname>
+                  <passphrase>mat2414</passphrase>
+                  <!--<<homedir>/Users/kostasmamalis/.gnung</homedir>-->
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -148,7 +165,7 @@
     <dependency>
       <groupId>io.magentys</groupId>
       <artifactId>cherry</artifactId>
-      <version>0.0.8</version>
+      <version>1.0.7</version>
     </dependency>
   </dependencies>
 </project>
